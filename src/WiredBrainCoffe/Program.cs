@@ -6,23 +6,18 @@ namespace WiredBrainCoffe
     {
         static void Main(string[] args)
         {
-            var tasks = new List<string>();
-            //Calculated Values
-            var responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed;
-            var overallScore = (Q1Results.ServiceScore + Q1Results.CoffeeScore + Q1Results.FoodScore + Q1Results.PriceScore) / 4;
+            var task = new Tasks();
+            task.TestReports();
+            Console.WriteLine();
 
-            if(Q1Results.CoffeeScore < Q1Results.FoodScore)
+            for(var i = 0; i < Q1Results.Responses.Count; i++)
             {
-                tasks.Add("Investigate coffee recipes and ingredients");
-            }
+                var currentResponse = Q1Results.Responses[i];
 
-            if(overallScore > 8.0)
-            {
-                tasks.Add("Work with leadership to reward staff");
-            }
-            else
-            {
-                tasks.Add("Work with employees for improvement ideas");
+                if(currentResponse.WouldRecommend < 7.0)
+                {
+                    Console.WriteLine(currentResponse.Comments);
+                }
             }
         }
     }
