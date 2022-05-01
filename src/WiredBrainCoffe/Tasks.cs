@@ -6,8 +6,8 @@ namespace WiredBrainCoffe
     {
         public void CommentsReport()
         {
-            Console.WriteLine("----------");
-            Console.WriteLine("Not would recommend comments:");
+            var comments = new List<string>();
+            Console.WriteLine(Environment.NewLine + "Not would recommend comments:");
             for (var i = 0; i < Q1Results.Responses.Count; i++)
             {
                 var currentResponse = Q1Results.Responses[i];
@@ -15,26 +15,27 @@ namespace WiredBrainCoffe
                 if (currentResponse.WouldRecommend < 7.0)
                 {
                     Console.WriteLine(currentResponse.Comments);
+                    comments.Add(currentResponse.Comments);
                 }
             }
 
-            Console.WriteLine("----------");
-            Console.WriteLine("Mobile app to improve comments:");
+            Console.WriteLine(Environment.NewLine + "Mobile app to improve comments:");
             foreach (var response in Q1Results.Responses)
             {
                 if (response.AreaToImprove == Q1Results.AreaToImprove)
                 {
                     Console.WriteLine(response.Comments);
+                    comments.Add(response.Comments);
                 }
             }
+            File.WriteAllLines("Reports/CommentsReport.csv", comments);
         }
-        public void FreeGiftCard()
+        public void WinnerEmails()
         {
             var selectedEmail = new List<string>();
             int counter = 0;
 
-            Console.WriteLine("----------");
-            Console.WriteLine("Free grift card to:");
+            Console.WriteLine(Environment.NewLine + "Free grift card to:");
             while (selectedEmail.Count < 2 && counter < Q1Results.Responses.Count)
             {
                 var currentItem = Q1Results.Responses[counter];
@@ -47,6 +48,7 @@ namespace WiredBrainCoffe
                 counter++;
                 Console.WriteLine(currentItem.Comments);
             }
+            File.WriteAllLines("Reports/WinnersReport.csv", selectedEmail);
         }
         public void TasksReport()
         {
@@ -101,10 +103,13 @@ namespace WiredBrainCoffe
                     break;
             }
 
+            Console.WriteLine(Environment.NewLine + "Tasks output:");
             foreach (var task in tasks)
             {
                 Console.WriteLine(task);
             }
+
+            File.WriteAllLines("Reports/TasksReport.csv", tasks);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace WiredBrainCoffe
             var task = new Tasks();
             task.TasksReport();
             task.CommentsReport();
-            task.FreeGiftCard();
+            task.WinnerEmails();
         }
     }
 }
