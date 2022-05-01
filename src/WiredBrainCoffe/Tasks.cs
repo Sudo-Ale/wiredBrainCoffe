@@ -4,11 +4,54 @@ namespace WiredBrainCoffe
 {
     class Tasks
     {
-        public void TestReports()
+        public void CommentsReport()
+        {
+            Console.WriteLine("----------");
+            Console.WriteLine("Not would recommend comments:");
+            for (var i = 0; i < Q1Results.Responses.Count; i++)
+            {
+                var currentResponse = Q1Results.Responses[i];
+
+                if (currentResponse.WouldRecommend < 7.0)
+                {
+                    Console.WriteLine(currentResponse.Comments);
+                }
+            }
+
+            Console.WriteLine("----------");
+            Console.WriteLine("Mobile app to improve comments:");
+            foreach (var response in Q1Results.Responses)
+            {
+                if (response.AreaToImprove == Q1Results.AreaToImprove)
+                {
+                    Console.WriteLine(response.Comments);
+                }
+            }
+        }
+        public void FreeGiftCard()
+        {
+            var selectedEmail = new List<string>();
+            int counter = 0;
+
+            Console.WriteLine("----------");
+            Console.WriteLine("Free grift card to:");
+            while (selectedEmail.Count < 2 && counter < Q1Results.Responses.Count)
+            {
+                var currentItem = Q1Results.Responses[counter];
+
+                //winners!!
+                if (currentItem.FavoriteProduct == "Cappucino")
+                {
+                    selectedEmail.Add(currentItem.EmailAddress);
+                }
+                counter++;
+                Console.WriteLine(currentItem.Comments);
+            }
+        }
+        public void TasksReport()
         {
             var tasks = new List<string>();
 
-            //Calculated Values
             var responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed;
             var overallScore = (Q1Results.ServiceScore + Q1Results.CoffeeScore + Q1Results.FoodScore + Q1Results.PriceScore) / 4;
 
@@ -58,7 +101,7 @@ namespace WiredBrainCoffe
                     break;
             }
 
-            foreach(var task in tasks)
+            foreach (var task in tasks)
             {
                 Console.WriteLine(task);
             }
