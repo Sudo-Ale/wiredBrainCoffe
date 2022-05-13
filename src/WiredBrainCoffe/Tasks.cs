@@ -28,6 +28,8 @@ namespace WiredBrainCoffe
                     comments.Add(response.Comments);
                 }
             }
+            Console.WriteLine(Environment.NewLine);
+            
             File.WriteAllLines("Reports/CommentsReport.csv", comments);
         }
         public void WinnerEmails()
@@ -44,10 +46,12 @@ namespace WiredBrainCoffe
                 if (currentItem.FavoriteProduct == "Cappucino")
                 {
                     selectedEmail.Add(currentItem.EmailAddress);
+                    Console.WriteLine(currentItem.Username);
                 }
                 counter++;
-                Console.WriteLine(currentItem.Comments);
             }
+            Console.WriteLine(Environment.NewLine);
+
             File.WriteAllLines("Reports/WinnersReport.csv", selectedEmail);
         }
         public void TasksReport()
@@ -108,6 +112,7 @@ namespace WiredBrainCoffe
             {
                 Console.WriteLine(task);
             }
+            Console.WriteLine(Environment.NewLine);
 
             File.WriteAllLines("Reports/TasksReport.csv", tasks);
         }

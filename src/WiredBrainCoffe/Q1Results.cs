@@ -24,6 +24,7 @@ namespace WiredBrainCoffe
         {
             new SurveyResponse()
             {
+                Username = "Giova91",
                 EmailAddress = "test1@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 9.0,
@@ -37,6 +38,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Ferni771",
                 EmailAddress = "test2@sample.com",
                 CoffeeScore = 10.0,
                 FoodScore = 6.0,
@@ -50,6 +52,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Gamberetto99",
                 EmailAddress = "test3@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 7.0,
@@ -63,6 +66,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Pulpassio999",
                 EmailAddress = "test4@sample.com",
                 CoffeeScore = 9.0,
                 FoodScore = 5.0,
@@ -76,6 +80,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Calcio87",
                 EmailAddress = "test5@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 7.0,
@@ -89,6 +94,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "MarioLuigi7",
                 EmailAddress = "test6@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 7.0,
@@ -102,6 +108,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Jhinocchiata",
                 EmailAddress = "test7@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 7.0,
@@ -115,6 +122,7 @@ namespace WiredBrainCoffe
             },
             new SurveyResponse()
             {
+                Username = "Bexalite90",
                 EmailAddress = "test8@sample.com",
                 CoffeeScore = 8.0,
                 FoodScore = 7.0,

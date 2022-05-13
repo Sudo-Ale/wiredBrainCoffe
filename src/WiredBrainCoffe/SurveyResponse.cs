@@ -13,6 +13,7 @@ namespace WiredBrainCoffe
         public string AreaToImprove { get; set; } = "";
         public string EmailAddress { get; set; } = "";
         public string Comments { get; set; } = "";
+        public string Username { get; set; } = "";
         
         public bool IsRewardsMember { get; set; }
     }
