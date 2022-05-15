@@ -17,12 +17,6 @@ namespace WiredBrainCoffe
 
                 Console.WriteLine("Please specify which quarter of data: (q1, q2)");
                 var selectedData = Console.ReadLine();
-
-                if (selectedData is null)
-                {
-                    Console.WriteLine("Quarter can't be null, try again..");
-                    continue;
-                }
                 
                 var surveyResult = JsonConvert.DeserializeObject<SurveyResults>(File.ReadAllText($"Data/{selectedData}.json"));
                 
@@ -32,19 +26,18 @@ namespace WiredBrainCoffe
                     continue;
                 }
 
-                var task = new Tasks();
                 switch (selectedReport)
                 {
                     case "rewards":
-                        task.WinnerEmails(surveyResult);
+                        RewardsReportService.GenerateWinnerEmails(surveyResult);
                         break;
 
                     case "comments":
-                        task.CommentsReport(surveyResult);
+                        CommentsReportService.GenerateCommentsReport(surveyResult);
                         break;
 
                     case "tasks":
-                        task.TasksReport(surveyResult);
+                        TasksReportService.GenerateTasksReport(surveyResult);
                         break;
 
                     case "quit":
