@@ -7,7 +7,7 @@ namespace WiredBrainCoffe
         public void CommentsReport(SurveyResults surveyResult)
         {
             var comments = new List<string>();
-            
+
             Console.WriteLine(Environment.NewLine + "Not would recommend comments:");
             for (var i = 0; i < surveyResult.Responses.Count; i++)
             {
@@ -30,7 +30,7 @@ namespace WiredBrainCoffe
                 }
             }
             Console.WriteLine(Environment.NewLine);
-            
+
             File.WriteAllLines("Reports/CommentsReport.csv", comments);
         }
         public void WinnerEmails(SurveyResults surveyResult)
@@ -38,7 +38,7 @@ namespace WiredBrainCoffe
             var selectedEmail = new List<string>();
             int counter = 0;
 
-            
+
             Console.WriteLine(Environment.NewLine + "Free grift card to:");
             while (selectedEmail.Count < 2 && counter < surveyResult.Responses.Count)
             {
@@ -90,24 +90,42 @@ namespace WiredBrainCoffe
                 tasks.Add("Rewards participants with discount coffee coupon");
             }
 
-            switch (surveyResult.AreaToImprove)
+            // tasks.Add(responseRate switch 
+            // {
+            //     var rate when rate < .33 => "Research options to improve response rate",
+            //     var rate when rate > .33 && rate < .66 => "Reward participants with free coffee coupon",
+            //     var rate when rate > .66 => "Rewards participants with discount coffee coupon",
+            //     _ => ""
+            // });
+
+
+            // switch (surveyResult.AreaToImprove)
+            // {
+            //     case "RewardsProgram":
+            //         tasks.Add("Revisit the rewards deal");
+            //         break;
+
+            //     case "Cleanliness":
+            //         tasks.Add("Contact the cleaning vendor.");
+            //         break;
+
+            //     case "MobileApp":
+            //         tasks.Add("Contact consulting firm about app");
+            //         break;
+
+            //     default:
+            //         tasks.Add("Investigate individual comments for ideas.");
+            //         break;
+            // }
+
+            tasks.Add(surveyResult.AreaToImprove switch
             {
-                case "RewardsProgram":
-                    tasks.Add("Revisit the rewards deal");
-                    break;
+                "RewardsProgram" => "Revisit the rewards deal",
+                "Cleanliness" => "Contact the cleaning vendor.",
+                "MobileApp" => "Contact consulting firm about app",
+                _ => "Investigate individual comments for ideas."
+            });
 
-                case "Cleanliness":
-                    tasks.Add("Contact the cleaning vendor.");
-                    break;
-
-                case "MobileApp":
-                    tasks.Add("Contact consulting firm about app");
-                    break;
-
-                default:
-                    tasks.Add("Investigate individual comments for ideas.");
-                    break;
-            }
 
             Console.WriteLine(Environment.NewLine + "Tasks output:");
             foreach (var task in tasks)

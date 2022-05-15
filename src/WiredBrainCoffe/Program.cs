@@ -20,7 +20,7 @@ namespace WiredBrainCoffe
 
                 if (selectedData is null)
                 {
-                    Console.WriteLine("quarter can't be null, try again..");
+                    Console.WriteLine("Quarter can't be null, try again..");
                     continue;
                 }
                 
