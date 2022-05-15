@@ -4,13 +4,14 @@ namespace WiredBrainCoffe
 {
     class Tasks
     {
-        public void CommentsReport()
+        public void CommentsReport(SurveyResults surveyResult)
         {
             var comments = new List<string>();
+            
             Console.WriteLine(Environment.NewLine + "Not would recommend comments:");
-            for (var i = 0; i < Q1Results.Responses.Count; i++)
+            for (var i = 0; i < surveyResult.Responses.Count; i++)
             {
-                var currentResponse = Q1Results.Responses[i];
+                var currentResponse = surveyResult.Responses[i];
 
                 if (currentResponse.WouldRecommend < 7.0)
                 {
@@ -20,9 +21,9 @@ namespace WiredBrainCoffe
             }
 
             Console.WriteLine(Environment.NewLine + "Mobile app to improve comments:");
-            foreach (var response in Q1Results.Responses)
+            foreach (var response in surveyResult.Responses)
             {
-                if (response.AreaToImprove == Q1Results.AreaToImprove)
+                if (response.AreaToImprove == surveyResult.AreaToImprove)
                 {
                     Console.WriteLine(response.Comments);
                     comments.Add(response.Comments);
@@ -32,21 +33,22 @@ namespace WiredBrainCoffe
             
             File.WriteAllLines("Reports/CommentsReport.csv", comments);
         }
-        public void WinnerEmails()
+        public void WinnerEmails(SurveyResults surveyResult)
         {
             var selectedEmail = new List<string>();
             int counter = 0;
 
+            
             Console.WriteLine(Environment.NewLine + "Free grift card to:");
-            while (selectedEmail.Count < 2 && counter < Q1Results.Responses.Count)
+            while (selectedEmail.Count < 2 && counter < surveyResult.Responses.Count)
             {
-                var currentItem = Q1Results.Responses[counter];
+                var currentItem = surveyResult.Responses[counter];
 
                 //winners!!
-                if (currentItem.FavoriteProduct == "Cappucino")
+                if (currentItem.IsRewardsMember)
                 {
                     selectedEmail.Add(currentItem.EmailAddress);
-                    Console.WriteLine(currentItem.Username);
+                    Console.WriteLine(currentItem.EmailAddress);
                 }
                 counter++;
             }
@@ -54,14 +56,14 @@ namespace WiredBrainCoffe
 
             File.WriteAllLines("Reports/WinnersReport.csv", selectedEmail);
         }
-        public void TasksReport()
+        public void TasksReport(SurveyResults surveyResult)
         {
             var tasks = new List<string>();
 
-            var responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed;
-            var overallScore = (Q1Results.ServiceScore + Q1Results.CoffeeScore + Q1Results.FoodScore + Q1Results.PriceScore) / 4;
+            var responseRate = surveyResult.NumberResponded / surveyResult.NumberSurveyed;
+            var overallScore = (surveyResult.ServiceScore + surveyResult.CoffeeScore + surveyResult.FoodScore + surveyResult.PriceScore) / 4;
 
-            if (Q1Results.CoffeeScore < Q1Results.FoodScore)
+            if (surveyResult.CoffeeScore < surveyResult.FoodScore)
             {
                 tasks.Add("Investigate coffee recipes and ingredients.");
             }
@@ -88,7 +90,7 @@ namespace WiredBrainCoffe
                 tasks.Add("Rewards participants with discount coffee coupon");
             }
 
-            switch (Q1Results.AreaToImprove)
+            switch (surveyResult.AreaToImprove)
             {
                 case "RewardsProgram":
                     tasks.Add("Revisit the rewards deal");
